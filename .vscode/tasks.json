@@ -37,6 +37,11 @@
       "type": "npm",
       "script": "start:production",
       "problemMatcher": []
+    },
+    {
+      "type": "npm",
+      "script": "storybook",
+      "problemMatcher": []
     }
   ]
 }

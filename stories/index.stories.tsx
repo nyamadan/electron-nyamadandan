@@ -1,3 +1,7 @@
+import "!style-loader!css-loader?modules=false&url=false!normalize.css";
+
+import "!style-loader!css-loader?modules=false!sass-loader!../src/index.scss";
+
 import * as React from "react";
 
 import { action } from "@storybook/addon-actions";
