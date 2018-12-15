@@ -3,29 +3,24 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const options = {
   mode: process.env["NODE_ENV"] || "development",
-
+  devtool: process.env["NODE_ENV"] === "production" ? false : "inline-source-map",
   target: "electron-renderer",
-
   entry: {
     renderer: './src/renderer.tsx',
   },
-
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist')
   },
-
   optimization: {
     splitChunks: {
       chunks: 'all'
     }
   },
-
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.
     extensions: [".ts", ".tsx", ".js"]
   },
-
   module: {
     rules: [
       // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
@@ -52,22 +47,11 @@ const options = {
       }
     ]
   },
-
   plugins: [
     new HtmlWebpackPlugin({
       template: "./template/index.ejs"
     })
   ]
 };
-
-
-if(options.mode !== "production") {
-  options.devtool = "source-map";
-  options.module.rules.push({
-    enforce: "pre",
-    test: /\.js$/,
-    loader: "source-map-loader"
-  });
-}
 
 module.exports = options;
